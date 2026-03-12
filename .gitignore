@@ -1,0 +1,19 @@
+Environments
+
+venv/
+env/
+.env
+
+Python Cache
+
+pycache/
+*.pyc
+
+Deepface weights (optional, but good so you don't upload 500mb files)
+
+.deepface/
+
+Streamlit/OS files
+
+.streamlit/
+.DS_Store
