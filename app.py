@@ -52,10 +52,26 @@
 
 
 
+import sys
+import subprocess
+
 import streamlit as st
+
+# --- ULTIMATE OPENCV FIX FOR STREAMLIT CLOUD ---
+# This forces the server to use the safe "headless" OpenCV
+@st.cache_resource
+def fix_opencv():
+    subprocess.run([sys.executable, "-m", "pip", "uninstall", "-y", "opencv-python"])
+    subprocess.run([sys.executable, "-m", "pip", "install", "opencv-python-headless==4.9.0.80"])
+
+fix_opencv()
+# -----------------------------------------------
+
 import cv2
 import numpy as np
 from deepface import DeepFace
+
+# ... (The rest of your Streamlit code goes here below) ...
 
 st.title("Emotion Detector")
 
