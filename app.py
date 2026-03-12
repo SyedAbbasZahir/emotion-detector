@@ -62,14 +62,21 @@ st.title("Emotion Detector")
 img_file = st.camera_input("Take a picture")
 
 if img_file is not None:
+
     file_bytes = np.asarray(bytearray(img_file.read()), dtype=np.uint8)
     frame = cv2.imdecode(file_bytes, 1)
 
-    result = DeepFace.analyze(frame,
-                              actions=['emotion'],
-                              enforce_detection=False)
+    result = DeepFace.analyze(
+        frame,
+        actions=['emotion'],
+        enforce_detection=False
+    )
 
-    emotion = result[0]["dominant_emotion"]
+    # handle both list and dict outputs
+    if isinstance(result, list):
+        emotion = result[0]["dominant_emotion"]
+    else:
+        emotion = result["dominant_emotion"]
 
     st.image(frame, channels="BGR")
     st.write("Detected Emotion:", emotion)
