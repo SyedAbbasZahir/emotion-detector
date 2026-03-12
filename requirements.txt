@@ -2,5 +2,5 @@ streamlit
 opencv-python-headless
 deepface
 tf-keras
-pandas
+tensorflow-cpu
 numpy<2
